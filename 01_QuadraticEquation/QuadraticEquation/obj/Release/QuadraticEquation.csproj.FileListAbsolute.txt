@@ -1,0 +1,9 @@
+c:\users\kozak\documents\visual studio 2015\Projects\QuadraticEquation\QuadraticEquation\bin\Release\QuadraticEquation.exe.config
+c:\users\kozak\documents\visual studio 2015\Projects\QuadraticEquation\QuadraticEquation\bin\Release\QuadraticEquation.exe
+c:\users\kozak\documents\visual studio 2015\Projects\QuadraticEquation\QuadraticEquation\bin\Release\QuadraticEquation.pdb
+c:\users\kozak\documents\visual studio 2015\Projects\QuadraticEquation\QuadraticEquation\obj\Release\QuadraticEquation.Control.resources
+c:\users\kozak\documents\visual studio 2015\Projects\QuadraticEquation\QuadraticEquation\obj\Release\QuadraticEquation.Properties.Resources.resources
+c:\users\kozak\documents\visual studio 2015\Projects\QuadraticEquation\QuadraticEquation\obj\Release\QuadraticEquation.csproj.GenerateResource.Cache
+c:\users\kozak\documents\visual studio 2015\Projects\QuadraticEquation\QuadraticEquation\obj\Release\QuadraticEquation.exe
+c:\users\kozak\documents\visual studio 2015\Projects\QuadraticEquation\QuadraticEquation\obj\Release\QuadraticEquation.pdb
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\QuadraticEquation\QuadraticEquation\obj\Release\QuadraticEquation.csprojResolveAssemblyReference.cache
