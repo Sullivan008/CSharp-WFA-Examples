@@ -1,0 +1,23 @@
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\bin\Release\MDIApplicationDemo.exe.config
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\bin\Release\MDIApplicationDemo.exe
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\bin\Release\MDIApplicationDemo.pdb
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.csprojResolveAssemblyReference.cache
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.MDI.resources
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.Notepad.resources
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.PhotoViewer.resources
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.Properties.Resources.resources
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.csproj.GenerateResource.Cache
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.exe
+C:\Users\kozak\Documents\Visual Studio 2015\Projects\MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.pdb
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\bin\Release\MDIApplicationDemo.exe.config
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\bin\Release\MDIApplicationDemo.exe
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\bin\Release\MDIApplicationDemo.pdb
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.csprojAssemblyReference.cache
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.MDI.resources
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.Notepad.resources
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.PhotoViewer.resources
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.Properties.Resources.resources
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.csproj.GenerateResource.cache
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.csproj.CoreCompileInputs.cache
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.exe
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\02_MDIApplicationDemo\MDIApplicationDemo\obj\Release\MDIApplicationDemo.pdb
