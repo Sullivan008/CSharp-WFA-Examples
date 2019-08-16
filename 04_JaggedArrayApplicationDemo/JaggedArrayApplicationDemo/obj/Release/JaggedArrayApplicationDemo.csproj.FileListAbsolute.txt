@@ -1,0 +1,18 @@
+c:\users\kozak\documents\visual studio 2015\Projects\JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\bin\Release\JaggedArrayApplicationDemo.exe.config
+c:\users\kozak\documents\visual studio 2015\Projects\JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\bin\Release\JaggedArrayApplicationDemo.exe
+c:\users\kozak\documents\visual studio 2015\Projects\JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\bin\Release\JaggedArrayApplicationDemo.pdb
+c:\users\kozak\documents\visual studio 2015\Projects\JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.ControlForm.resources
+c:\users\kozak\documents\visual studio 2015\Projects\JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.Properties.Resources.resources
+c:\users\kozak\documents\visual studio 2015\Projects\JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.csproj.GenerateResource.Cache
+c:\users\kozak\documents\visual studio 2015\Projects\JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.exe
+c:\users\kozak\documents\visual studio 2015\Projects\JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.pdb
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\bin\Release\JaggedArrayApplicationDemo.exe.config
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\bin\Release\JaggedArrayApplicationDemo.exe
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\bin\Release\JaggedArrayApplicationDemo.pdb
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.csprojAssemblyReference.cache
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.ControlForm.resources
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.Properties.Resources.resources
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.csproj.GenerateResource.cache
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.csproj.CoreCompileInputs.cache
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.exe
+c:\Users\kozakp\Documents\Repositories\C#\Csharp-WFA-Examples\04_JaggedArrayApplicationDemo\JaggedArrayApplicationDemo\obj\Release\JaggedArrayApplicationDemo.pdb
