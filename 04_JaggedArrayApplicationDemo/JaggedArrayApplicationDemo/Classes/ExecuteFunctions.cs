@@ -2,21 +2,19 @@
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace JaggedArrayApplicationDemo
+namespace JaggedArrayApplicationDemo.Classes
 {
     public class ExecuteFunctions
     {
-        private readonly RichTextBox resultRichTextBox;
+        private readonly RichTextBox _resultRichTextBox;
 
-        /// <summary>
-        ///     Konstruktor.
-        /// </summary>
         public ExecuteFunctions(RichTextBox resultRichTextBox)
         {
-            this.resultRichTextBox = resultRichTextBox;
+            _resultRichTextBox = resultRichTextBox;
         }
 
         #region PUBLIC Methods
+
         /// <summary>
         ///     Metódus, amely az osztályváltozóban található RichTextBox-ot feltölti a JaggedArray
         ///     tömböt bejárva, a tömbben található elemek hosszúságával. 
@@ -28,11 +26,11 @@ namespace JaggedArrayApplicationDemo
             {
                 try
                 {
-                    resultRichTextBox.AppendText($"{(i + 1)}. array length: {jaggedArray[i].Length}\n");
+                    _resultRichTextBox.AppendText($"{(i + 1)}. array length: {jaggedArray[i].Length}\n");
                 }
                 catch (NullReferenceException)
                 {
-                    resultRichTextBox.AppendText($"{(i + 1)}. array length: NULL\n");
+                    _resultRichTextBox.AppendText($"{(i + 1)}. array length: NULL\n");
                 }
             }
         }
@@ -52,27 +50,29 @@ namespace JaggedArrayApplicationDemo
                 {
                     if (line != null)
                     {
-                        resultRichTextBox.AppendText($"{(i + 1)}. array elements: ");
+                        _resultRichTextBox.AppendText($"{(i + 1)}. array elements: ");
                     }
 
                     UpSet(line);
                     PrintOut(line);
                 }
-                catch (NullReferenceException e)
+                catch (NullReferenceException)
                 {
-                    resultRichTextBox.AppendText($"{(i + 1)}. array elements: NULL");
+                    _resultRichTextBox.AppendText($"{(i + 1)}. array elements: NULL");
                 }
                 finally
                 {
                     i++;
 
-                    resultRichTextBox.AppendText("\n");
+                    _resultRichTextBox.AppendText("\n");
                 }
             }
         }
+        
         #endregion
 
         #region PRIVATE HELPER Methods
+        
         /// <summary>
         ///     Függvény, amely a paraméterben kapott SOR-t reprezentáló tömböt feltölti tetszőleges RANDOM számokkal,
         ///     amely 0 és 100 között helyezkednek el.
@@ -82,7 +82,9 @@ namespace JaggedArrayApplicationDemo
         {
             for (int i = 0; i < line.Length; i++)
             {
-                line[i] = new Random(Convert.ToInt32(Regex.Match(Guid.NewGuid().ToString(), @"\d+").Value)).Next(0, 100);
+                line[i] = 
+                    new Random(Convert.ToInt32(Regex.Match(Guid.NewGuid().ToString(), @"\d+").Value))
+                        .Next(0, 100);
             }
         }
 
@@ -97,16 +99,17 @@ namespace JaggedArrayApplicationDemo
 
             while (i < line.Length)
             {
-                resultRichTextBox.AppendText(Convert.ToString(line[i]));
+                _resultRichTextBox.AppendText(Convert.ToString(line[i]));
 
                 i++;
 
                 if (i < line.Length)
                 {
-                    resultRichTextBox.AppendText(", ");
+                    _resultRichTextBox.AppendText(", ");
                 }
             }
         }
+
         #endregion
     }
 }

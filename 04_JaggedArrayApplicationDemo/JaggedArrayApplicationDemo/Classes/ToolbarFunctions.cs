@@ -1,19 +1,16 @@
 ﻿using System.Windows.Forms;
 
-namespace JaggedArrayApplicationDemo
+namespace JaggedArrayApplicationDemo.CLasses
 {
-    public class ToolbarFunctions
+	public class ToolbarFunctions
 	{
-        private readonly RichTextBox resultRichTextBox;
+        private readonly RichTextBox _resultRichTextBox;
 
-        private const string DIALOG_WINDOW_FILTER = "Text File (*txt)|*.txt|Rich Text File (*rtf)|*.rtf";
+        public static string DialogWindowFilter { get; } = "Text File (*txt)|*.txt|Rich Text File (*rtf)|*.rtf";
 
-        /// <summary>
-        ///     Konstruktor.
-        /// </summary>
         public ToolbarFunctions(RichTextBox resultRichTextBox)
         {
-            this.resultRichTextBox = resultRichTextBox;
+            _resultRichTextBox = resultRichTextBox;
         }
         
         /// <summary>
@@ -24,17 +21,17 @@ namespace JaggedArrayApplicationDemo
 		{
 			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
 			{
-				saveFileDialog.Filter = DIALOG_WINDOW_FILTER;
+				saveFileDialog.Filter = DialogWindowFilter;
 
 				if (saveFileDialog.ShowDialog() == DialogResult.OK)
 				{
 					switch (saveFileDialog.FilterIndex)
 					{
 						case 1:
-							resultRichTextBox.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.PlainText);
+							_resultRichTextBox.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.PlainText);
 							break;
 						case 2:
-							resultRichTextBox.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.RichText);
+							_resultRichTextBox.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.RichText);
 							break;
 					}
 				}
@@ -49,17 +46,17 @@ namespace JaggedArrayApplicationDemo
 		{
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
 			{
-				openFileDialog.Filter = DIALOG_WINDOW_FILTER;
+				openFileDialog.Filter = DialogWindowFilter;
 
 				if (openFileDialog.ShowDialog() == DialogResult.OK)
 				{
 					switch (openFileDialog.FilterIndex)
 					{
 						case 1:
-							resultRichTextBox.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.PlainText);
+							_resultRichTextBox.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.PlainText);
 							break;
 						case 2:
-                            resultRichTextBox.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.RichText);
+                            _resultRichTextBox.LoadFile(openFileDialog.FileName, RichTextBoxStreamType.RichText);
 							break;
 					}
 				}

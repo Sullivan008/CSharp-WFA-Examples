@@ -1,4 +1,4 @@
-﻿namespace JaggedArrayApplicationDemo
+﻿namespace JaggedArrayApplicationDemo.Forms
 {
     partial class ControlForm
 	{

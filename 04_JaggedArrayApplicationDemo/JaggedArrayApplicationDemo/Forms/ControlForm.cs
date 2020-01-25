@@ -1,28 +1,27 @@
-﻿using System;
+﻿using JaggedArrayApplicationDemo.Classes;
+using JaggedArrayApplicationDemo.CLasses;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace JaggedArrayApplicationDemo
+namespace JaggedArrayApplicationDemo.Forms
 {
     public partial class ControlForm : Form
 	{
-        private readonly ExecuteFunctions executeFunctions;
-        private readonly ToolbarFunctions toolbarFunctions;
+        private readonly ExecuteFunctions _executeFunctions;
+        private readonly ToolbarFunctions _toolbarFunctions;
 
-        private readonly int[][] jaggedArray;
+        private readonly int[][] _jaggedArray;
 
-        /// <summary>
-        ///     Konstruktor.
-        /// </summary>
         public ControlForm()
 		{
 			InitializeComponent();
 
-            jaggedArray = new int[10][];
+            _jaggedArray = new int[10][];
 
-            executeFunctions = new ExecuteFunctions(resultRichTextBox);
-            toolbarFunctions = new ToolbarFunctions(resultRichTextBox);
+            _executeFunctions = new ExecuteFunctions(resultRichTextBox);
+            _toolbarFunctions = new ToolbarFunctions(resultRichTextBox);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace JaggedArrayApplicationDemo
         /// </summary>
         private void ControlForm_Load(object sender, EventArgs e)
 		{            
-            JaggedArrayLengthsInitialize(jaggedArray);
+            JaggedArrayLengthsInitialize(_jaggedArray);
 		}
 
         /// <summary>
@@ -42,20 +41,20 @@ namespace JaggedArrayApplicationDemo
             ClearRichTextBox(resultRichTextBox);
 
             switch (new[] { radioGroupBox }.SelectMany(x => x.Controls.OfType<RadioButton>()
-                .Where(y => y.Checked)).FirstOrDefault().Tag.ToString())
+                .Where(y => y.Checked)).FirstOrDefault()?.Tag.ToString())
 			{
 				case "0":
-                    executeFunctions.ArrayLength(jaggedArray);
+                    _executeFunctions.ArrayLength(_jaggedArray);
 					break;
 				case "1":
-                    executeFunctions.GeneratingElements(jaggedArray);
+                    _executeFunctions.GeneratingElements(_jaggedArray);
 					break;
 				case "2":
                     ClearRichTextBox(resultRichTextBox);
                     break;
                 default:
-                    break;
-			}
+                    throw new ArgumentNullException("There is no such RadioButton on the interface");
+            }
 		}
 
         /// <summary>
@@ -79,14 +78,7 @@ namespace JaggedArrayApplicationDemo
         /// </summary>
 		private void ResultRichTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (resultRichTextBox.Text.Length > 0)
-            {
-                saveTSMenuItem.Enabled = true;
-            }
-            else
-            {
-                saveTSMenuItem.Enabled = false;
-            }
+            saveTSMenuItem.Enabled = resultRichTextBox.Text.Length > 0;
         }
 
         /// <summary>
@@ -107,15 +99,15 @@ namespace JaggedArrayApplicationDemo
                 case "Close":
                     CloseApplication();
                     break;
-                default:
-                    break;
             }
         }
-        #region Methods
+
+        #region PRIVATE Event Methods
+
         /// <summary>
         ///     Az alkalmazás bezárását végrehajtó metódus.
         /// </summary>
-        private void CloseApplication()
+        private static void CloseApplication()
         {
             if(CloseWindow() == DialogResult.Yes)
             {
@@ -128,7 +120,7 @@ namespace JaggedArrayApplicationDemo
         /// </summary>
         private void SaveFile()
         {
-            toolbarFunctions.SaveFile();
+            _toolbarFunctions.SaveFile();
         }
 
         /// <summary>
@@ -136,11 +128,13 @@ namespace JaggedArrayApplicationDemo
         /// </summary>
         private void OpenFile()
         {
-            toolbarFunctions.OpenFile();
+            _toolbarFunctions.OpenFile();
         }
+
         #endregion
 
         #region PRIVATE HELPER Methods
+
         /// <summary>
         ///     Metódus, amely a paraméterben átadott tömbhöz újabb változó hosszúságú (RANDOM)
         ///     tömböket inicializál. Így kapjuk meg a Jagged Array-ünket.
@@ -150,7 +144,8 @@ namespace JaggedArrayApplicationDemo
         {
             for(int i = 0; i < jaggedArray.Length; i++)
             {
-                jaggedArray[i] = new int[new Random(Convert.ToInt32(Regex.Match(Guid.NewGuid().ToString(), @"\d+").Value)).Next(0, 200)];
+                jaggedArray[i] =
+                    new int[new Random(Convert.ToInt32(Regex.Match(Guid.NewGuid().ToString(), @"\d+").Value)).Next(0, 200)];
             }
         }
 
@@ -163,12 +158,8 @@ namespace JaggedArrayApplicationDemo
         /// <summary>
         ///     Függvény amely elkészít egy Dialógus ablakot, amely megerősítést kér az alkalmazás bezárásához.
         /// </summary>
-        /// <returns>
-        ///     A megerősítő válasz az alkalmazás bezárásához.
-        ///         NO  - Nem záródik be az alkalmazás.
-        ///         YES - Bezáródik az alkalmazás. 
-        /// </returns>
-        private DialogResult CloseWindow() => (MessageBox.Show("Are you sure you want to quit?", "Exit",
+        private static DialogResult CloseWindow() =>
+            (MessageBox.Show(@"Are you sure you want to quit?", @"Exit",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question));
         #endregion
     }
