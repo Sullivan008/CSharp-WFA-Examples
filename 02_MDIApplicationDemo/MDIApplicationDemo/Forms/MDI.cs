@@ -3,19 +3,17 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace MDIApplicationDemo
+namespace MDIApplicationDemo.Forms
 {
     public partial class MDI : Form
-    { 
-        /// <summary>
-        ///     Konstruktor.
-        /// </summary>
-		public MDI()
+    {
+        public MDI()
         {
             InitializeComponent();
         }
 
         #region EVENTS
+
         /// <summary>
         ///     CLICK EVENT - Esemény, amely akkor fut le, hogyha valamelyik MENÜ ELEM-re (Menu Item) kattintunk.
         ///     Az, hogy melyik Menu Item-re kattintottunk a SENDER-ben található TAG Property tartalmazza, és ez
@@ -43,25 +41,25 @@ namespace MDIApplicationDemo
                 case "Open":
                     Open();
                     break;
-                default:
-                    break;
             }
         }
+
         #endregion
 
-        #region Methods
+        #region PRIVATE Action Methods
+
         /// <summary>
         ///     Az alkalmazás bezárását végrehajtó metódus.
         /// </summary>
         private void CloseWindow()
         {
-            if (MessageBox.Show("Do you really want to quit?", "Exit", MessageBoxButtons.YesNo,
+            if (MessageBox.Show(@"Do you really want to quit?", @"Exit", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Application.Exit();
             }
         }
-        
+
         /// <summary>
         ///     Elkészít és megjelenít egy Notepad MDI CHILD FORM-ot az aktuális MDI FORM-hoz.
         /// </summary>
@@ -87,7 +85,7 @@ namespace MDIApplicationDemo
         /// </summary>
         private void CloseAcitveMDIChild()
         {
-            ActiveMdiChild.Close();
+            ActiveMdiChild?.Close();
 
             SetCloseButtonsEnabled();
         }
@@ -114,15 +112,17 @@ namespace MDIApplicationDemo
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "Text File (*.txt)|*.txt|JPG Picture (*.jpg)|*.jpg";
+                openFileDialog.Filter = @"Text File (*.txt)|*.txt|JPG Picture (*.jpg)|*.jpg";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (Path.GetExtension(openFileDialog.FileName).Equals(".txt"))
+                    string fileExtension = Path.GetExtension(openFileDialog.FileName);
+
+                    if (fileExtension != null && fileExtension.Equals(".txt"))
                     {
                         OpenTextFileInMDIForm(openFileDialog.FileName);
                     }
-                    else if (Path.GetExtension(openFileDialog.FileName).Equals(".jpg"))
+                    else if (fileExtension != null && fileExtension.Equals(".jpg"))
                     {
                         OpenPictureInMDIForm(openFileDialog.FileName);
                     }
@@ -131,23 +131,18 @@ namespace MDIApplicationDemo
                 }
             }
         }
+
         #endregion
 
         #region PRIVATE HELPER Methods
+        
         /// <summary>
         ///     Beállítja a CLOSE TS MENU ITEM-ek ENABLED Property-jeit annak függvényében,
         ///     hogy van-e még elérhető MDI Children az MDI Konténerben.
         /// </summary>
         private void SetCloseButtonsEnabled()
         {
-            if (MdiChildren.Length != 0)
-            {
-                SetTSMenuItemsEnabledProperty(true, closeActiveTSMenuItem, closeAllTSMenuItem);
-            }
-            else
-            {
-                SetTSMenuItemsEnabledProperty(false, closeActiveTSMenuItem, closeAllTSMenuItem);
-            }
+            SetTSMenuItemsEnabledProperty(MdiChildren.Length != 0, closeActiveTSMenuItem, closeAllTSMenuItem);
         }
 
         /// <summary>
@@ -197,7 +192,7 @@ namespace MDIApplicationDemo
         ///     Függvény amely elkészít egy Notepad Form Objektumot, amelynek a SZÜLŐ MDI az MDI FORM objektum.
         /// </summary>
         /// <returns>Notepad Form Objektum.</returns>
-        private Notepad CreateNewNotepadForm() => new Notepad()
+        private Notepad CreateNewNotepadForm() => new Notepad
         {
             MdiParent = this
         };
@@ -206,7 +201,7 @@ namespace MDIApplicationDemo
         ///     Függvény amely elkészít egy PhotoViewer Form Objektumot, amelynek a SZÜLŐ MDI az MDI FORM objektum.
         /// </summary>
         /// <returns>PhotoViewer Form Objektum.</returns>
-        private PhotoViewer CreateNewPhotoViewerForm() => new PhotoViewer()
+        private PhotoViewer CreateNewPhotoViewerForm() => new PhotoViewer
         {
             MdiParent = this
         };

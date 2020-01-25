@@ -1,20 +1,14 @@
 ﻿using System.Windows.Forms;
 
-namespace MDIApplicationDemo
+namespace MDIApplicationDemo.Forms
 {
     public partial class PhotoViewer : Form
     {
-        /// <summary>
-        ///     Konstruktor.
-        /// </summary>
         public PhotoViewer()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        ///     Property, amely a FORM-on található INPUT RichTextBox-ot téríti vissza.
-        /// </summary>
-        public PictureBox PictureBox { get { return pictureBox; } }
+        public PictureBox PictureBox => pictureBox;
     }
 }

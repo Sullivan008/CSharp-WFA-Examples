@@ -1,4 +1,4 @@
-﻿namespace MDIApplicationDemo
+﻿namespace MDIApplicationDemo.Forms
 {
     partial class MDI
 	{
