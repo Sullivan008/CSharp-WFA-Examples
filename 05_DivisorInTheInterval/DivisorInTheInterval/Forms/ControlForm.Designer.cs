@@ -1,4 +1,4 @@
-﻿namespace DivisorInTheInterval
+﻿namespace DivisorInTheInterval.Forms
 {
     partial class ControlForm
     {

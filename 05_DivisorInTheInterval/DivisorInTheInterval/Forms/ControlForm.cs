@@ -1,53 +1,23 @@
-﻿/**
-* Készítsen Windows Form Applikációt. 
-*
-* 1. Legyen két input mező, melyben egész típusú numerikus értékekt adhatunk meg.
-*    Ezek a mezők fogják jelenteni az intervallumot melyet vizsgálnunk kell.
-*    Legyen egy harmadik input mező, melyben egész típusú numerikus értéket
-*    adhatunk meg. Ez fogja jelenteni az osztó számot. 
-*    Feladatunk, hogy, a megadott zárt intervallumon belül megvizsgáljuk, 
-*    s kiírjuk egy gomb eseményének segítségével az osztó számmal osztható számokat.
-*    
-*    Feltételek: I1 kisebb vagy egyenlő mint I2.
-*                I3 nagyobb mint nulla.
-*                Az output adatokat egy szöveget megjelenítő objektumban
-*                jelenítsük meg.
-*  
-* 2. Legyen lehetőségünk menteni az adatokat (a felhasználó adja meg az útvonalat).
-*       Az input és az output adatokat mentsük el, szöveges formátumban.
-*    Legyen lehetőségünk megnyitni a szöveges formátumú fájlt.
-*       Az input adatokat az input mezőkbe, az output adatot az output mezőbe
-*       olvassuk vissza.
-*
-* 3. Legyen lehetőségünk az output mező betűtípusát megváltoztatni.
-*
-* 4. Kilépéskor mentsük el az applikáció ablakának a helyzetét a képernyőn, majd
-*    amikor újra megnyitjuk a programot, az elmentett pozíciókban helyezkedjen
-*    el a képernyőn.
-**/
-
-using DivisorInTheInterval.Classes;
+﻿using DivisorInTheInterval.Classes;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DivisorInTheInterval
+namespace DivisorInTheInterval.Forms
 {
     public partial class ControlForm : Form
     {
-        private readonly ControlFormHelperFunctions controlFormHelperFunctions;
+        private readonly ControlFormHelperFunctions _controlFormHelperFunctions;
 
-        /// <summary>
-        ///     Konstruktor
-        /// </summary>
         public ControlForm()
         {
             InitializeComponent();
 
-            controlFormHelperFunctions = new ControlFormHelperFunctions(outputRichTextBox);
+            _controlFormHelperFunctions = new ControlFormHelperFunctions(outputRichTextBox);
         }
 
         #region EVENTS
+
         /// <summary>
         ///     LOAD EVENT - A program indításakor hívódik meg az esemény.
         /// 
@@ -71,13 +41,11 @@ namespace DivisorInTheInterval
         {
             outputRichTextBox.Clear();
 
-            controlFormHelperFunctions.ExaminationOfCondition(intervalStartTextBox, intervalEndTextBox, dividerTextBox);
+            _controlFormHelperFunctions.ExaminationOfCondition(intervalStartTextBox, intervalEndTextBox, dividerTextBox);
 
-            /// Csak akkor haladunk tovább, hogyha az OUTPUT mező semmilyen információt nem tartalmaz, mert eddig a pontig, 
-            /// csak ERROR Message-ket tartalmazhat csak.
             if (outputRichTextBox.Text.Equals(string.Empty))
             {
-                controlFormHelperFunctions.InitializeVariables(out int intervalStart, out int intervalEnd, out int divider,
+                _controlFormHelperFunctions.InitializeVariables(out int intervalStart, out int intervalEnd, out int divider,
                     intervalStartTextBox, intervalEndTextBox, dividerTextBox);
 
                 if (intervalStart <= intervalEnd)
@@ -115,11 +83,11 @@ namespace DivisorInTheInterval
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Filter = "Text File (*.txt)|*.txt";
+                saveFileDialog.Filter = @"Text File (*.txt)|*.txt";
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    controlFormHelperFunctions.SaveFile(saveFileDialog.FileName,
+                    _controlFormHelperFunctions.SaveFile(saveFileDialog.FileName,
                         intervalStartTextBox, intervalEndTextBox, dividerTextBox);
                 }
             }
@@ -135,13 +103,13 @@ namespace DivisorInTheInterval
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Filter = "Text File (*.txt)|*.txt";
+                openFileDialog.Filter = @"Text File (*.txt)|*.txt";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     outputRichTextBox.Clear();
 
-                    controlFormHelperFunctions.OpenFile(openFileDialog.FileName,
+                    _controlFormHelperFunctions.OpenFile(openFileDialog.FileName,
                         intervalStartTextBox, intervalEndTextBox, dividerTextBox);
                 }
             }
@@ -162,7 +130,6 @@ namespace DivisorInTheInterval
                 }
             }
         }
-        #endregion
 
         /// <summary>
         ///     FORM CLOSING EVENT - A bezárás gombra kattintva hívódik meg ez az esemény.
@@ -177,5 +144,7 @@ namespace DivisorInTheInterval
 
             Properties.Settings.Default.Save();
         }
+
+        #endregion
     }
 }

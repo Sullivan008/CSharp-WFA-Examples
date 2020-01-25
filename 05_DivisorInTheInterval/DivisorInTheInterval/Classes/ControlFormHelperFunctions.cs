@@ -3,19 +3,17 @@ using System.Windows.Forms;
 
 namespace DivisorInTheInterval.Classes
 {
-    class ControlFormHelperFunctions
+    public class ControlFormHelperFunctions
     {
-        private readonly RichTextBox outputRichTextBox;
+        private readonly RichTextBox _outputRichTextBox;
 
-        /// <summary>
-        ///     Konstruktor.
-        /// </summary>
         public ControlFormHelperFunctions(RichTextBox outputRichTextBox)
         {
-            this.outputRichTextBox = outputRichTextBox;
+            _outputRichTextBox = outputRichTextBox;
         }
 
         #region PUBLIC Methods
+
         /// <summary>
         ///     A paraméterben kapott TextBox-ok validációját végrehajtó metódus. A validációs hibás eredményeket
         ///     az osztályváltozóban található RichTextBox-ba kerülnek rögzítésre. A metódus végig vizsgálja, hogy
@@ -28,12 +26,12 @@ namespace DivisorInTheInterval.Classes
             {
                 if (IsEmpty(item.Text))
                 {
-                    outputRichTextBox.AppendText($"ERROR - Field \"{item.Tag}\" is empty\n");
+                    _outputRichTextBox.AppendText($"ERROR - Field \"{item.Tag}\" is empty\n");
                 }
 
                 if (!IsNumeric(item.Text))
                 {
-                    outputRichTextBox.AppendText($"ERROR - Field \"{item.Tag}\" contains a non-numeric value\n");
+                    _outputRichTextBox.AppendText($"ERROR - Field \"{item.Tag}\" contains a non-numeric value\n");
                 }
             }
         }
@@ -64,8 +62,6 @@ namespace DivisorInTheInterval.Classes
                         break;
                     case 2:
                         divider = currentInputValue;
-                        break;
-                    default:
                         break;
                 }
             }
@@ -100,7 +96,7 @@ namespace DivisorInTheInterval.Classes
                                 inputTextBoxes[i - 1].Text = readText;
                                 break;
                             default:
-                                outputRichTextBox.AppendText(readText);
+                                _outputRichTextBox.AppendText(readText);
                                 break;
                         }
 
@@ -109,7 +105,7 @@ namespace DivisorInTheInterval.Classes
                 }
                 catch (IOException)
                 {
-                    MessageBox.Show("The file could not be read!", "Error",
+                    MessageBox.Show(@"The file could not be read!", @"Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 finally
@@ -131,35 +127,29 @@ namespace DivisorInTheInterval.Classes
         {
             using (StreamWriter streamWriter = new StreamWriter(path))
             {
-                foreach(TextBox item in inputTextBoxes)
+                foreach (TextBox item in inputTextBoxes)
                 {
                     streamWriter.WriteLine(item.Text);
                 }
 
-                streamWriter.WriteLine(outputRichTextBox.Text);
+                streamWriter.WriteLine(_outputRichTextBox.Text);
             }
         }
+
         #endregion
 
         #region PRIVATE HELPER METHODS
+
         /// <summary>
         ///     Függvény, amely megvizsgálja, hogy a paraméterben kapott karakterlánc az üres-e.
         /// </summary>
         /// <param name="text">A vizsgálandó karakterlánc.</param>
-        /// <returns>
-        ///     TRUE  - Ha üres.
-        ///     FALSE - Ha nem.
-        /// </returns>
-        private bool IsEmpty(string text) => text.Equals(string.Empty);
+        private static bool IsEmpty(string text) => text.Equals(string.Empty);
 
         /// <summary>
         ///     Függvény, amely megvizságlja, hogy a paraméterben kapott karakterlánc az egy valós szám-e.
         /// </summary>
         /// <param name="text">A vizsgálandó karakterlánc.</param>
-        /// <returns>
-        ///     TRUE  - Ha valós szám.
-        ///     FALSE - Ha nem.
-        /// </returns>
         private bool IsNumeric(string text) => double.TryParse(text, out _);
 
         /// <summary>
@@ -167,7 +157,8 @@ namespace DivisorInTheInterval.Classes
         /// </summary>
         /// <param name="inputText">Az átalakítandó karakterlánc.</param>
         /// <returns>A paraméterben átadott karakterlánc egész típusú számmá átalakítva.</returns>
-        private int GetInputTextBoxValue(string inputText) => int.Parse(inputText);
+        private static int GetInputTextBoxValue(string inputText) => int.Parse(inputText);
+        
         #endregion
     }
 }
