@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace QuadraticEquation
+namespace QuadraticEquation.Classes
 {
-    public class QuadraticEquiatonFunctions
+    public class QuadraticEquationFunctions
     {
-        private readonly RichTextBox resultRichTextBox;
+        private readonly RichTextBox _resultRichTextBox;
 
-        /// <summary>
-        ///     Konstruktor.
-        /// </summary>
-        public QuadraticEquiatonFunctions(RichTextBox resultRichTextBox)
+        public QuadraticEquationFunctions(RichTextBox resultRichTextBox)
         {
-            this.resultRichTextBox = resultRichTextBox;
+            _resultRichTextBox = resultRichTextBox;
         }
 
-        #region Methods
+        #region PUBLIC Methods
+
         /// <summary>
         ///     A paraméterekben kapott adatok alapján kiszámoljuk a másodfokú egyenletet.
         /// </summary>
@@ -33,12 +31,12 @@ namespace QuadraticEquation
                     throw new Exception("ERROR - The discriminant value is less than 0!");
                 }
 
-                resultRichTextBox.AppendText($"X1 = {(-(b + Math.Sqrt(discriminant)) / (2 * a))}" +
+                _resultRichTextBox.AppendText($"X1 = {(-(b + Math.Sqrt(discriminant)) / (2 * a))}" +
                     $"\nX2 = {(-(b - Math.Sqrt(discriminant)) / (2 * a))}");
             }
             catch (Exception ex)
             {
-                resultRichTextBox.AppendText(ex.Message);
+                _resultRichTextBox.AppendText(ex.Message);
             }
         }
         
@@ -54,37 +52,32 @@ namespace QuadraticEquation
             {
                 if (IsEmpty(item.Text))
                 {
-                    resultRichTextBox.AppendText($"ERROR - Field \"{item.Tag}\" is empty\n");
+                    _resultRichTextBox.AppendText($"ERROR - Field \"{item.Tag}\" is empty\n");
                 }
 
                 if (!IsNumeric(item.Text))
                 {
-                    resultRichTextBox.AppendText($"ERROR - Field \"{item.Tag}\" contains a non-numeric value\n");
+                    _resultRichTextBox.AppendText($"ERROR - Field \"{item.Tag}\" contains a non-numeric value\n");
                 }
             }
         }
+
         #endregion
 
         #region PRIVATE HELPER METHODS
+
         /// <summary>
         ///     Függvény, amely megvizsgálja, hogy a paraméterben kapott karakterlánc az üres-e.
         /// </summary>
         /// <param name="text">A vizsgálandó karakterlánc.</param>
-        /// <returns>
-        ///     TRUE  - Ha üres.
-        ///     FALSE - Ha nem.
-        /// </returns>
-        private bool IsEmpty(string text) => text.Equals(string.Empty);
+        private static bool IsEmpty(string text) => text.Equals(string.Empty);
 
         /// <summary>
         ///     Függvény, amely megvizságlja, hogy a paraméterben kapott karakterlánc az egy valós szám-e.
         /// </summary>
         /// <param name="text">A vizsgálandó karakterlánc.</param>
-        /// <returns>
-        ///     TRUE  - Ha valós szám.
-        ///     FALSE - Ha nem.
-        /// </returns>
         private bool IsNumeric(string text) => double.TryParse(text, out _);
+
         #endregion
     }
 }

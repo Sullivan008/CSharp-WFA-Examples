@@ -1,36 +1,35 @@
-﻿using QuadraticEquation.Properties;
+﻿using QuadraticEquation.Classes;
+using QuadraticEquation.Properties;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
-namespace QuadraticEquation
+namespace QuadraticEquation.Forms
 {
     public partial class Control : Form
     {
         #region CLASS VARIABLES
-        private QuadraticEquiatonFunctions quadraticEquiatonFunctions;
-        
-        private double a;
-        private double b;
-        private double c;
 
-        /// <summary>
-        ///     Tároljuk, hogy az adatokat elmentettük-e már. Ez a program bezárásakor számottevő.
-        /// </summary>
-        private bool isSaved = false;
+        private readonly QuadraticEquationFunctions _quadraticEquationFunctions;
+
+        private double _a;
+        private double _b;
+        private double _c;
+
+        private bool _isSaved;
+
         #endregion
-        
-        /// <summary>
-        ///     Konstruktor
-        /// </summary>
+
         public Control()
         {
             InitializeComponent();
 
-            quadraticEquiatonFunctions = new QuadraticEquiatonFunctions(resultRichTextBox);
+            _quadraticEquationFunctions = new QuadraticEquationFunctions(resultRichTextBox);
         }
 
-        #region Events
+        #region EVENTS
+
         /// <summary>
         ///     LOAD EVENT - Az esemény akkor fut le, amikor a Form betöltődik. Inizializáljuk a képernyő méretét
         ///     illetve beolvassuk a program előző állapotát, amelyet bezáráskor mentettünk le.
@@ -52,15 +51,13 @@ namespace QuadraticEquation
         {
             SetObjectsDefaultState();
 
-            quadraticEquiatonFunctions.ExaminationOfCondition(aTextBox, bTextBox, cTextBox);
+            _quadraticEquationFunctions.ExaminationOfCondition(aTextBox, bTextBox, cTextBox);
 
-            /// Csak akkor hajtjuk végre a műveletet, hogyha az OUTPUT Objektumban nem található érték, azaz nem volt, semmilyen
-            /// validiációs hiba.
             if (resultRichTextBox.Text.Equals(string.Empty))
             {
-                quadraticEquiatonFunctions.Calculation(double.TryParse(aTextBox.Text, out a) ? a : a,
-                    double.TryParse(bTextBox.Text, out b) ? b : b,
-                    double.TryParse(cTextBox.Text, out c) ? c : c);
+                _quadraticEquationFunctions.Calculation(double.TryParse(aTextBox.Text, out _a) ? _a : throw new ArgumentNullException(nameof(_a)),
+                    double.TryParse(bTextBox.Text, out _b) ? _b : throw new ArgumentNullException(nameof(_b)),
+                    double.TryParse(cTextBox.Text, out _c) ? _c : throw new ArgumentNullException(nameof(_c)));
             }
         }
 
@@ -69,24 +66,21 @@ namespace QuadraticEquation
         /// </summary>
         private void SaveStateButton_Click(object sender, EventArgs e)
         {
-            /// INPUT TextBox értékeinek mentése.
             Settings.Default.aTextBox = aTextBox.Text;
             Settings.Default.bTextBox = bTextBox.Text;
             Settings.Default.cTextBox = cTextBox.Text;
 
-            /// OUTPUT RichTextBox értékeinek mentése.
             Settings.Default.resultRichTextBox = resultRichTextBox.Text;
 
-            /// FORM POSITION adatainak mentése.
             Settings.Default.PosX = Left;
             Settings.Default.PosY = Top;
             Settings.Default.ControlFormHeight = Size.Height;
             Settings.Default.ControlFormWidth = Size.Width;
 
             Settings.Default.Save();
-            isSaved = true;
+            _isSaved = true;
 
-            MessageBox.Show("Data saved successfully!", "Saving...", MessageBoxButtons.OK);
+            MessageBox.Show(@"Data saved successfully!", @"Saving...", MessageBoxButtons.OK);
         }
 
         /// <summary>
@@ -96,27 +90,34 @@ namespace QuadraticEquation
         /// </summary>
         private void Control_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!isSaved)
+            if (!_isSaved)
             {
-                if (MessageBox.Show("Attention! Data not saved. Would you like us to save before exit this application?",
-                                    "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show(@"Attention! Data not saved. Would you like us to save before exit this application?",
+                                    @"Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     saveStateButton.PerformClick();
                 }
             }
         }
+
         #endregion
 
         #region PRIVATE HELPER Methods
+
         /// <summary>
         ///     A SETTINGS-ből beolvassuk a program előző állapotát. (Milyen számok voltak eltárolva, üzenetek, stb...).
         ///     Ezt mind eltároljuk az osztály változókban is.
         /// </summary>
         private void LoadPreviousProgramState()
         {
-            aTextBox.Text = double.TryParse(Settings.Default.aTextBox, out a) == true ? a.ToString() : string.Empty;
-            bTextBox.Text = double.TryParse(Settings.Default.bTextBox, out b) == true ? b.ToString() : string.Empty;
-            cTextBox.Text = double.TryParse(Settings.Default.cTextBox, out c) == true ? c.ToString() : string.Empty;
+            aTextBox.Text = double.TryParse(Settings.Default.aTextBox, out _a) ?
+                _a.ToString(CultureInfo.CurrentCulture) : string.Empty;
+
+            bTextBox.Text = double.TryParse(Settings.Default.bTextBox, out _b) ?
+                _b.ToString(CultureInfo.CurrentCulture) : string.Empty;
+
+            cTextBox.Text = double.TryParse(Settings.Default.cTextBox, out _c) ?
+                _c.ToString(CultureInfo.CurrentCulture) : string.Empty;
 
             resultRichTextBox.Text = Settings.Default.resultRichTextBox;
         }
@@ -139,6 +140,7 @@ namespace QuadraticEquation
         {
             resultRichTextBox.Clear();
         }
+
         #endregion
     }
 }

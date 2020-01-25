@@ -1,6 +1,6 @@
-﻿namespace QuadraticEquation
+﻿namespace QuadraticEquation.Forms
 {
-	partial class Control
+    partial class Control
 	{
 		/// <summary>
 		/// Required designer variable.
