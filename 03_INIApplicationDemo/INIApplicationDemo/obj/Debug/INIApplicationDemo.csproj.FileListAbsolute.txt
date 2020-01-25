@@ -1,9 +1,0 @@
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\bin\Debug\INIApplicationDemo.exe.config
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\bin\Debug\INIApplicationDemo.exe
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\bin\Debug\INIApplicationDemo.pdb
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\obj\Debug\INIApplicationDemo.csprojResolveAssemblyReference.cache
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\obj\Debug\INIApplicationDemo.Properties.Resources.resources
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\obj\Debug\INIApplicationDemo.csproj.GenerateResource.Cache
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\obj\Debug\INIApplicationDemo.exe
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\obj\Debug\INIApplicationDemo.pdb
-c:\users\kozak\documents\visual studio 2015\Projects\INIApplicationDemo\INIApplicationDemo\obj\Debug\INIApplicationDemo.ControlForm.resources

@@ -1,4 +1,5 @@
-﻿using INIApplicationDemo.Properties;
+﻿using INIApplicationDemo.Classes;
+using INIApplicationDemo.Properties;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -6,26 +7,27 @@ using System.Windows.Forms;
 namespace INIApplicationDemo
 {
     public partial class ControlForm : Form
-	{
-        private bool dataIsSaved;
+    {
+        private bool _dataIsSaved;
 
-        /// <summary>
-        ///     Konstruktor.
-        /// </summary>
-		public ControlForm()
-		{
-			InitializeComponent();
+        private readonly IniFile _iniFile;
 
-            dataIsSaved = false;
-		}
+        public ControlForm()
+        {
+            InitializeComponent();
+
+            _dataIsSaved = false;
+            _iniFile = new IniFile();
+        }
 
         #region EVENTS
+
         /// <summary>
         ///     LOAD EVENT - Az esemény akkor fut le, amikor a Form betöltődik. Inizializáljuk a képernyő méretét
         ///     illetve beolvassuk a program előző állapotát, amelyet bezáráskor mentettünk le.
         /// </summary>
         private void ControlForm_Load(object sender, EventArgs e)
-		{
+        {
             SetWindowStateAndSize();
 
             LoadPreviousProgramState();
@@ -35,40 +37,29 @@ namespace INIApplicationDemo
         ///     CLICK EVENT - Az adatok mentését végrehajtó metódus.
         /// </summary>
 		private void SaveButton_Click(object sender, EventArgs e)
-		{
-			if (saveSettingsCheckBox.Checked)
-			{
-				try
-				{
-                    /// INPUT TextBox értékeinek mentése.
-                    Settings.Default.UserName = userNameTextBox.Text;
-					Settings.Default.ReadValue = int.Parse(readValueTextBox.Text);
+        {
+            if (saveSettingsCheckBox.Checked)
+            {
+                _iniFile.Write("ControlForm", "UserName", userNameTextBox.Text);
+                _iniFile.Write("ControlForm", "ReadValue", readValueTextBox.Text);
 
-                    /// FORM POSITION adatainak mentése.
-                    Settings.Default.PosX = Left;
-					Settings.Default.PosY = Top;
-					Settings.Default.ControlFormHeight = Size.Height;
-					Settings.Default.ControlFormWidth = Size.Width;
+                Settings.Default.PosX = Left;
+                Settings.Default.PosY = Top;
+                Settings.Default.ControlFormHeight = Size.Height;
+                Settings.Default.ControlFormWidth = Size.Width;
 
-					Settings.Default.Save();
-					dataIsSaved = true;
+                Settings.Default.Save();
+                _dataIsSaved = true;
 
-					MessageBox.Show("Data Save Successfully!", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				}
-				catch (FormatException)
-				{
-					MessageBox.Show("ERROR - Incorrect values in the \"Scanned Value\" field!", "Failed to save",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-					UseWaitCursor = false;
-				}
-			}
-			else
-			{
-				MessageBox.Show("Please select the \"Save Settings\" checkbox!", "Operation failed!",
-					MessageBoxButtons.OK, MessageBoxIcon.Information);
-			}
-		}
+                MessageBox.Show(@"Data Save Successfully!", @"Save",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(@"Please select the ""Save Settings"" checkbox!", @"Operation failed!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
         /// <summary>
         ///     FORM CLOSING EVENT - A metódus akkor fut le, amikor a címsorban található Kliépés gombra kattintunk.
@@ -76,21 +67,23 @@ namespace INIApplicationDemo
         ///     hogy elmenthesse.
         /// </summary>
 		private void ControlForm_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			if (saveSettingsCheckBox.Checked && !dataIsSaved)
-			{
-				DialogResult result = MessageBox.Show("The settings have not been saved. Do you want to save it?", "Exit",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {
+            if (saveSettingsCheckBox.Checked && !_dataIsSaved)
+            {
+                DialogResult result = MessageBox.Show(@"The settings have not been saved. Do you want to save it?",
+                    @"Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-				if (result == DialogResult.Yes)
-				{
-					saveButton.PerformClick();
-				}
-			}
-		}
+                if (result == DialogResult.Yes)
+                {
+                    saveButton.PerformClick();
+                }
+            }
+        }
+
         #endregion
 
         #region PRIVATE HELPER Methods
+
         /// <summary>
         ///     A SETTINGS-ből beolvassuk a program előzőleg elhelyezett pozícióját és méretezését.
         /// </summary>
@@ -107,9 +100,10 @@ namespace INIApplicationDemo
         /// </summary>
         private void LoadPreviousProgramState()
         {
-            userNameResultLabel.Text += $" {Convert.ToString(Settings.Default.UserName)}";
-            readValueResultLabel.Text += $" {Convert.ToString(Settings.Default.ReadValue)}";
+            userNameResultLabel.Text += $@" {_iniFile.Read("ControlForm", "UserName")}";
+            readValueResultLabel.Text += $@" {_iniFile.Read("ControlForm", "ReadValue")}";
         }
+
         #endregion
     }
 }
